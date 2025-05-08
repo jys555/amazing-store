@@ -1,131 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazing Store</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #0077cc;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        .categories {
-            display: flex;
-            justify-content: space-around;
-            padding: 1rem;
-            background-color: #fff;
-            flex-wrap: wrap;
-        }
-        .category {
-            background-color: #e0f0ff;
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 0.5rem;
-            cursor: pointer;
-            flex: 1 1 45%;
-            text-align: center;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .category:hover {
-            background-color: #cce4ff;
-        }
-        .products {
-            display: none;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 1rem;
-        }
-        .product-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin: 1rem;
-            padding: 1rem;
-            width: 280px;
-            text-align: center;
-        }
-        .product-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .product-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
-        }
-        .product-description {
-            font-size: 0.95rem;
-            color: #333;
-        }
-        .price {
-            margin-top: 0.5rem;
-            font-weight: bold;
-            color: #008000;
-        }
-        .buy-button {
-            margin-top: 0.5rem;
-            background-color: #0077cc;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazing Store - O'yinchoqlar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f8fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #0a84ff;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .product-price {
+      color: #0a84ff;
+      font-size: 1.1rem;
+      margin: 8px 0;
+    }
+
+    .buy-button {
+      display: inline-block;
+      background-color: #0a84ff;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <header>Amazing Store</header>
-    <div class="categories">
-        <div class="category" onclick="showCategory('toys')">🧸 O‘yinchoqlar</div>
-        <div class="category" onclick="showCategory('tech')">🔌 Maishiy texnika</div>
-    </div>
+  <header>O'yinchoqlar</header>
 
-    <div id="toys" class="products">
-        <div class="product-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/861/861256.png" alt="Suzuvchi Delfin">
-            <div class="product-title">Suzuvchi Delfin – LED</div>
-            <div class="product-description">Suvda o‘ynashni zavqli qiluvchi ajoyib o‘yinchoq!</div>
-            <div class="price">59990 so'm</div>
-            <a href="https://ya.cc/t/uODzySb_6mHrAt" class="buy-button">Sotib olish</a>
-        </div>
-        <div class="product-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/1029/1029183.png" alt="UNO karta o‘yini">
-            <div class="product-title">UNO Karta O‘yini</div>
-            <div class="product-description">Har bir lahza yorqin va unutilmas bo‘ladi!</div>
-            <div class="price">21990 so'm</div>
-            <a href="https://ya.cc/t/w6RScD9A6mHtcT" class="buy-button">Sotib olish</a>
-        </div>
+  <div class="container">
+    <div class="product-card">
+      <img src="https://avatars.mds.yandex.net/i?id=9cfc1a24ad7934c8051dfac74a3e78d6036b4e9d-10885378-images-thumbs&n=13" alt="UNO Karta O‘yini">
+      <div class="product-title">UNO Karta O‘yini – 108 ta kartalar</div>
+      <div class="product-price">Narxi: 23 990 so'm</div>
+      <a class="buy-button" href="https://ya.cc/t/w6RScD9A6mHtcT" target="_blank">Sotib olish</a>
     </div>
-
-    <div id="tech" class="products">
-        <div class="product-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/2011/2011448.png" alt="Mevali ventilyator">
-            <div class="product-title">Mevali Mini Ventilyator</div>
-            <div class="product-description">Yozning jaziramasida ham salqin turing!</div>
-            <div class="price">23990 so'm</div>
-            <a href="https://ya.cc/t/Uix_Z0-J6mHsX7" class="buy-button">Sotib olish</a>
-        </div>
-    </div>
-
-    <script>
-        function showCategory(id) {
-            document.querySelectorAll('.products').forEach(el => el.style.display = 'none');
-            document.getElementById(id).style.display = 'flex';
-        }
-    </script>
+  </div>
 </body>
 </html>
