@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazing Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem;
+            background-color: #fff;
+            flex-wrap: wrap;
+        }
+        .category {
+            background-color: #e0f0ff;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            flex: 1 1 45%;
+            text-align: center;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .category:hover {
+            background-color: #cce4ff;
+        }
+        .products {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 1rem;
+            padding: 1rem;
+            width: 280px;
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        .product-description {
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .price {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: #008000;
+        }
+        .buy-button {
+            margin-top: 0.5rem;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>Amazing Store</header>
+    <div class="categories">
+        <div class="category" onclick="showCategory('toys')">🧸 O‘yinchoqlar</div>
+        <div class="category" onclick="showCategory('tech')">🔌 Maishiy texnika</div>
+    </div>
+
+    <div id="toys" class="products">
+        <div class="product-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/861/861256.png" alt="Suzuvchi Delfin">
+            <div class="product-title">Suzuvchi Delfin – LED</div>
+            <div class="product-description">Suvda o‘ynashni zavqli qiluvchi ajoyib o‘yinchoq!</div>
+            <div class="price">59990 so'm</div>
+            <a href="https://ya.cc/t/uODzySb_6mHrAt" class="buy-button">Sotib olish</a>
+        </div>
+        <div class="product-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/1029/1029183.png" alt="UNO karta o‘yini">
+            <div class="product-title">UNO Karta O‘yini</div>
+            <div class="product-description">Har bir lahza yorqin va unutilmas bo‘ladi!</div>
+            <div class="price">21990 so'm</div>
+            <a href="https://ya.cc/t/w6RScD9A6mHtcT" class="buy-button">Sotib olish</a>
+        </div>
+    </div>
+
+    <div id="tech" class="products">
+        <div class="product-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2011/2011448.png" alt="Mevali ventilyator">
+            <div class="product-title">Mevali Mini Ventilyator</div>
+            <div class="product-description">Yozning jaziramasida ham salqin turing!</div>
+            <div class="price">23990 so'm</div>
+            <a href="https://ya.cc/t/Uix_Z0-J6mHsX7" class="buy-button">Sotib olish</a>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(id) {
+            document.querySelectorAll('.products').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
