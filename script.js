@@ -1,48 +1,45 @@
-// script.js
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
 
-// Kategoriyalarga mos mahsulotlar
-const products = {
-  Toys: [
-    {
-      name: "Raqsga tushadigan kaktus",
-      image: "https://example.com/kaktus.jpg",
-      price: "99 000 so'm",
-      description: "Musiqa ostida raqsga tushadigan, quvnoq va interaktiv kaktus o'yinchog'i.",
-      link: "https://market.yandex.com/product/kaktus"
-    }
-  ],
-  Tech: [] // Yangi kategoriyalar shu yerga qo‘shiladi
-};
+  const products = {
+    Toys: [
+      {
+        name: "Raqsga tushadigan kaktus",
+        description: "Musiqa ostida raqsga tushadigan interaktiv o'yinchoq.",
+        price: "89 000 so'm",
+        image: "https://github.com/jys555/amazing-store/raw/main/assets/kaktus.jpg",
+        link: "https://example.com/kaktus", // Yandex Market yoki Uzum havolasi
+      },
+    ],
+    // Yangi kategoriyalarni bu yerga qo‘shamiz (Texnika va h.k.)
+  };
 
-// URL querydan category ni o‘qish
-const params = new URLSearchParams(window.location.search);
-const category = params.get("category");
+  const container = document.getElementById("product-container");
+  const title = document.getElementById("category-title");
 
-const container = document.getElementById("product-list");
-const categoryTitle = document.getElementById("category-title");
+  if (!category || !products[category]) {
+    title.innerText = "Kategoriya topilmadi";
+    return;
+  }
 
-if (!category || !products[category]) {
-  categoryTitle.innerText = "Kategoriya topilmadi";
-} else {
-  categoryTitle.innerText = category + " mahsulotlari";
+  title.innerText = category;
+
   products[category].forEach((product) => {
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = "product-card";
+
     card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" />
+      <img src="${product.image}" alt="${product.name}" class="product-img" />
       <h3>${product.name}</h3>
       <p>${product.description}</p>
-      <div class="price">${product.price}</div>
-      <a class="buy-btn" href="${product.link}" target="_blank">Marketda ko‘rish</a>
+      <p><strong>${product.price}</strong></p>
+      <a href="${product.link}" class="buy-button" target="_blank">Sotib olish</a>
+      <div class="reaction-buttons">
+        <button>👍</button>
+        <button>👎</button>
+      </div>
     `;
     container.appendChild(card);
   });
-}
-
-// Telegramga qaytish tugmasi (faqat WebApp orqali ochilganda ko‘rinadi)
-const tgBackBtn = document.getElementById("back-to-channel");
-if (window.Telegram && window.Telegram.WebApp) {
-  tgBackBtn.style.display = "block";
-} else {
-  tgBackBtn.style.display = "none";
-}
+});
