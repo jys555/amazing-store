@@ -1,43 +1,56 @@
 body {
   font-family: sans-serif;
-  background-color: var(--tg-theme-bg-color, #fff);
-  color: var(--tg-theme-text-color, #000);
   margin: 0;
-  padding: 10px;
+  padding: 0;
+  background-color: var(--tg-theme-bg-color, #ffffff);
+  color: var(--tg-theme-text-color, #000000);
 }
 
-.app-container {
-  max-width: 500px;
-  margin: auto;
-}
-
-#product-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+#category-title {
+  text-align: center;
+  font-size: 24px;
+  margin: 20px;
 }
 
 .product-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 10px;
   background-color: var(--tg-theme-secondary-bg-color, #f9f9f9);
-  text-align: center;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.product-card img {
+.product-img {
   width: 100%;
-  border-radius: 8px;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-button {
-  margin-top: 20px;
+h3 {
+  margin: 10px 0 5px 0;
+}
+
+.buy-button {
+  display: inline-block;
+  margin-top: 10px;
   padding: 10px 15px;
-  font-size: 16px;
-  width: 100%;
+  background-color: var(--tg-theme-button-color, #2AABEE);
+  color: var(--tg-theme-button-text-color, #ffffff);
   border: none;
-  border-radius: 6px;
-  background-color: #0088cc;
-  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.reaction-buttons {
+  margin-top: 10px;
+}
+
+.reaction-buttons button {
+  font-size: 20px;
+  margin-right: 10px;
+  background: transparent;
+  border: none;
   cursor: pointer;
 }
