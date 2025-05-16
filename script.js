@@ -1,45 +1,64 @@
-document.addEventListener("DOMContentLoaded", function () {
+const productsData = {
+  "o'yinchoqlar": [
+    {
+      name: "Raqsga tushadigan kaktus",
+      image: "https://i.ibb.co/YkYw7dx/kaktus.jpg",
+      description: "Raqsga tushadigan, musiqa chaladigan va gapiradigan kaktus o'yinchog'i. Bolalar uchun ajoyib sovg'a!",
+      price: "99 000 so'm",
+      link: "https://market.yandex.ru/product--raqsga-tushadigan-kaktus/123456"
+    }
+  ],
+  "texnika": [
+    {
+      name: "Mini Blender",
+      image: "https://i.ibb.co/sCRrDzF/mini-blender.jpg",
+      description: "Kichik o'lchamdagi portativ blender. Kokteyl, smuzi va bolalar uchun pyure tayyorlash uchun juda qulay.",
+      price: "159 000 so'm",
+      link: "https://market.yandex.ru/product--mini-blender/654321"
+    }
+  ]
+};
+
+function getCategoryFromURL() {
   const params = new URLSearchParams(window.location.search);
-  const category = params.get("category");
+  return params.get("category");
+}
 
-  const products = {
-    Toys: [
-      {
-        name: "Raqsga tushadigan kaktus",
-        description: "Musiqa ostida raqsga tushadigan interaktiv o'yinchoq.",
-        price: "89 000 so'm",
-        image: "https://github.com/jys555/amazing-store/raw/main/assets/kaktus.jpg",
-        link: "https://example.com/kaktus", // Yandex Market yoki Uzum havolasi
-      },
-    ],
-    // Yangi kategoriyalarni bu yerga qo‘shamiz (Texnika va h.k.)
-  };
+function renderProducts(category) {
+  const titleElement = document.getElementById("category-title");
+  const productsElement = document.getElementById("products");
 
-  const container = document.getElementById("product-container");
-  const title = document.getElementById("category-title");
-
-  if (!category || !products[category]) {
-    title.innerText = "Kategoriya topilmadi";
+  const products = productsData[category];
+  if (!products) {
+    titleElement.textContent = "Kategoriya topilmadi";
     return;
   }
 
-  title.innerText = category;
+  titleElement.textContent = category.charAt(0).toUpperCase() + category.slice(1);
 
-  products[category].forEach((product) => {
-    const card = document.createElement("div");
-    card.className = "product-card";
+  products.forEach(product => {
+    const productCard = document.createElement("div");
+    productCard.className = "product-card";
 
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" class="product-img" />
-      <h3>${product.name}</h3>
-      <p>${product.description}</p>
-      <p><strong>${product.price}</strong></p>
-      <a href="${product.link}" class="buy-button" target="_blank">Sotib olish</a>
-      <div class="reaction-buttons">
-        <button>👍</button>
-        <button>👎</button>
+    productCard.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <div class="product-content">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <strong>${product.price}</strong>
+        <div class="product-actions">
+          <a href="${product.link}" target="_blank" class="buy-button">🛒 Sotib olish</a>
+          <div class="reactions">
+            <span>❤️</span>
+            <span>👎</span>
+          </div>
+        </div>
       </div>
     `;
-    container.appendChild(card);
+
+    productsElement.appendChild(productCard);
   });
-});
+}
+
+const category = getCategoryFromURL();
+renderProducts(category);
