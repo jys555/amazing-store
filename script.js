@@ -1,59 +1,48 @@
+// script.js
+
+// Kategoriyalarga mos mahsulotlar
 const products = {
-  "oyinchoqlar": [
+  Toys: [
     {
-      name: "Yumshoq ayiqcha",
-      price: "99,000 so‘m",
-      image: "https://example.com/ayiqcha.jpg",
-      link: "https://market.yandex.ru/product/ayiqcha"
-    },
-    {
-      name: "LEGO to‘plami",
-      price: "299,000 so‘m",
-      image: "https://example.com/lego.jpg",
-      link: "https://market.yandex.ru/product/lego"
+      name: "Raqsga tushadigan kaktus",
+      image: "https://example.com/kaktus.jpg",
+      price: "99 000 so'm",
+      description: "Musiqa ostida raqsga tushadigan, quvnoq va interaktiv kaktus o'yinchog'i.",
+      link: "https://market.yandex.com/product/kaktus"
     }
   ],
-  "texnika": [
-    {
-      name: "Changyutgich",
-      price: "799,000 so‘m",
-      image: "https://example.com/changyutgich.jpg",
-      link: "https://market.yandex.ru/product/changyutgich"
-    }
-  ]
+  Tech: [] // Yangi kategoriyalar shu yerga qo‘shiladi
 };
 
-function getCategoryFromURL() {
-  const tg = window.Telegram.WebApp;
-  return tg.initDataUnsafe?.start_param || 'oyinchoqlar';
-}
+// URL querydan category ni o‘qish
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category");
 
-function loadProducts() {
-  const category = getCategoryFromURL();
-  const listContainer = document.getElementById('product-list');
-  const title = document.getElementById('category-title');
-  
-  if (!category || !products[category]) {
-    title.innerText = "Kategoriya topilmadi";
-    return;
-  }
+const container = document.getElementById("product-list");
+const categoryTitle = document.getElementById("category-title");
 
-  title.innerText = category[0].toUpperCase() + category.slice(1);
-  products[category].forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
+if (!category || !products[category]) {
+  categoryTitle.innerText = "Kategoriya topilmadi";
+} else {
+  categoryTitle.innerText = category + " mahsulotlari";
+  products[category].forEach((product) => {
+    const card = document.createElement("div");
+    card.className = "card";
     card.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" />
-      <h3>${item.name}</h3>
-      <p>${item.price}</p>
-      <a href="${item.link}" target="_blank">🛒 Xarid qilish</a>
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <div class="price">${product.price}</div>
+      <a class="buy-btn" href="${product.link}" target="_blank">Marketda ko‘rish</a>
     `;
-    listContainer.appendChild(card);
+    container.appendChild(card);
   });
 }
 
-document.getElementById('back-button').addEventListener('click', () => {
-  Telegram.WebApp.close();
-});
-
-loadProducts();
+// Telegramga qaytish tugmasi (faqat WebApp orqali ochilganda ko‘rinadi)
+const tgBackBtn = document.getElementById("back-to-channel");
+if (window.Telegram && window.Telegram.WebApp) {
+  tgBackBtn.style.display = "block";
+} else {
+  tgBackBtn.style.display = "none";
+}
