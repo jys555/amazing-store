@@ -1,3 +1,6 @@
+let tg = window.Telegram.WebApp;
+tg.expand(); // ekranni to'liq holatga o‘tkazish
+
 const productsData = {
   "o'yinchoqlar": [
     {
