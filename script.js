@@ -1,5 +1,7 @@
+if (window.Telegram && Telegram.WebApp) {
+  Telegram.WebApp.expand();
+}
 // Telegram WebApp API chaqirilsin
-Telegram.WebApp.expand();
 
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get('category');
