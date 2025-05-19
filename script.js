@@ -55,3 +55,8 @@ if (!products) {
     container.appendChild(card);
   });
 }
+<div class="reactions">
+  <span>❤️ 12</span>
+  <span>👎 3</span>
+</div>
+
