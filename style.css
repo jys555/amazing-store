@@ -1,4 +1,65 @@
 body {
+  margin: 0;
+  padding: 0;
   font-family: system-ui, sans-serif;
-  background-color: #f5f5f5;
-  padding: 16px;
+  background-color: var(--tg-theme-bg-color, #ffffff);
+  color: var(--tg-theme-text-color, #000000);
+}
+
+h1#category-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 16px;
+}
+
+.product-card {
+  background-color: var(--tg-theme-bg-color, #ffffff);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  border: 1px solid var(--tg-theme-hint-color, #dddddd);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.product-content h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.product-content p {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.product-content strong {
+  font-size: 14px;
+  color: var(--tg-theme-link-color, #2b7bb9);
+}
+
+.product-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.buy-button {
+  text-decoration: none;
+  color: white;
+  background-color: var(--tg-theme-button-color, #2b7bb9);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.reactions span {
+  margin: 0 4px;
+  font-size: 18px;
+}
