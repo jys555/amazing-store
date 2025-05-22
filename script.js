@@ -1,62 +1,73 @@
-if (window.Telegram && Telegram.WebApp) {
-  Telegram.WebApp.expand();
-}
-// Telegram WebApp API chaqirilsin
+Telegram.WebApp.ready();
+Telegram.WebApp.expand();
 
-const urlParams = new URLSearchParams(window.location.search);
-const category = urlParams.get('category');
-
-// Har bir kategoriya uchun mahsulotlar ro‘yxati
 const productsData = {
-  'oyinchoqlar': [
+  "oyinchoqlar": [
     {
-      name: 'Raqsga tushadigan kaktus',
-      price: '139 000 so‘m',
-      description: 'Musiqaga raqsga tushadigan interaktiv o‘yinchoq',
-      image: 'https://example.com/kaktus.jpg',
-      link: 'https://market.yandex.ru/product--kaktus-raqsga-tushadigan/123456'
-    },
-    // Shu yerga boshqa o‘yinchoqlarni qo‘shing
+      name: "Raqsga tushadigan kaktus",
+      image: "https://i.ibb.co/YkYw7dx/kaktus.jpg",
+      description: "Raqsga tushadigan, musiqa chaladigan va gapiradigan kaktus o'yinchog'i.",
+      price: "99 000 so'm",
+      link: "https://market.yandex.ru/product--raqsga-tushadigan-kaktus/123456"
+    }
   ],
-  'texnika': [
+  "texnika": [
     {
-      name: 'Blender 3-in-1',
-      price: '249 000 so‘m',
-      description: 'Kuchli blender, maydalagich va sharbat chiqargich',
-      image: 'https://example.com/blender.jpg',
-      link: 'https://market.yandex.ru/product--blender/789012'
-    },
-    // boshqa texnika mahsulotlari
+      name: "Mini Blender",
+      image: "https://i.ibb.co/sCRrDzF/mini-blender.jpg",
+      description: "Portativ blender. Kokteyl va pyure tayyorlash uchun qulay.",
+      price: "159 000 so'm",
+      link: "https://market.yandex.ru/product--mini-blender/654321"
+    }
   ]
 };
 
-const products = productsData[category];
-const container = document.getElementById('products');
-const title = document.getElementById('category-title');
+function getCategoryFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("category");
+}
 
-if (!products) {
-  title.textContent = 'Kategoriya topilmadi';
-  container.innerHTML = `<p style="text-align:center; margin: 30px;">Bu kategoriya uchun mahsulotlar topilmadi.</p>`;
-} else {
-  title.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+function renderProducts(category) {
+  const titleElement = document.getElementById("category-title");
+  const productsElement = document.getElementById("products");
+
+  const products = productsData[category];
+  if (!products) {
+    titleElement.textContent = "Kategoriya topilmadi";
+    return;
+  }
+
+  titleElement.textContent = category.charAt(0).toUpperCase() + category.slice(1);
 
   products.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
+    const productCard = document.createElement("div");
+    productCard.className = "product-card";
+
+    productCard.innerHTML = `
       <img src="${product.image}" alt="${product.name}" />
-      <h3>${product.name}</h3>
-      <p>${product.description}</p>
-      <strong>${product.price}</strong>
-      <div class="actions">
-        <a href="${product.link}" target="_blank">🛒 Xarid qilish</a>
+      <div class="product-content">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <strong>${product.price}</strong>
+        <div class="product-actions">
+          <a href="${product.link}" target="_blank" class="buy-button">🛒 Sotib olish</a>
+          <div class="reactions">
+            <span>❤️ 0</span>
+            <span>👎 0</span>
+          </div>
+        </div>
       </div>
     `;
-    container.appendChild(card);
+
+    productsElement.appendChild(productCard);
   });
 }
-<div class="reactions">
-  <span>❤️ 12</span>
-  <span>👎 3</span>
-</div>
 
+// Tema (yorug‘ / qorong‘i) holatini aniqlash
+const theme = Telegram.WebApp.colorScheme;
+if (theme === "dark") {
+  document.body.classList.add("dark");
+}
+
+const category = getCategoryFromURL();
+renderProducts(category);
