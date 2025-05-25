@@ -24,7 +24,11 @@ const productsData = {
 
 function getCategoryFromURL() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("category");
+  const startappParam = params.get("startapp");
+  if (startappParam && startappParam.startsWith("category=")) {
+    return startappParam.split("category=")[1];
+  }
+  return null;
 }
 
 function renderProducts(category) {
