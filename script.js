@@ -50,4 +50,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// 🔽 Bu faylning eng pastiga qo‘shing (eng oxiriga)
+function getAllProducts() {
+  return [
+    {
+      id: 1,
+      name: "Raqsga tushadigan kaktus",
+      price: "129 000 so‘m",
+      image: "images/kaktus.jpg",
+      category: "O‘yinchoqlar",
+      link: "https://ya.ru/kaktus"
+    },
+    {
+      id: 2,
+      name: "Yumshoq to‘p",
+      price: "79 000 so‘m",
+      image: "images/ball.jpg",
+      category: "O‘yinchoqlar",
+      link: "https://ya.ru/ball"
+    },
+    {
+      id: 3,
+      name: "Pultli jeep",
+      price: "199 000 so‘m",
+      image: "images/jeep.jpg",
+      category: "O‘yinchoqlar",
+      link: "https://ya.ru/jeep"
+    }
+  ];
+}
+
+function createProductCard(product) {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  card.innerHTML = `
+    <img src="${product.image}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <p>${product.price}</p>
+    <div class="actions">
+      <button onclick="toggleLike(${product.id}, this)">🤍</button>
+      <a href="${product.link}" target="_blank">Sotib olish</a>
+    </div>
+  `;
+
+  // Agar oldin like bosilgan bo‘lsa, yurak qizil bo‘lib tursin
+  if (isProductLiked(product.id)) {
+    card.querySelector('button').textContent = '❤️';
+  }
+
+  return card;
+}
+
 
