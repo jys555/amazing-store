@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Amazing Store</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <h1 id="category-title">Yuklanmoqda...</h1>
-    <div id="products"></div>
-    <div class="bottom-button">
-      <a href="https://t.me/amazing_store_uz" target="_blank" class="back-button">🔙 Kanalga qaytish</a>
-    </div>
-  </div>
+  <header>
+    <h1>Amazing Store</h1>
+  </header>
 
-  <script src="script.js"></script>
+  <main class="product-grid" id="product-list">
+    <!-- Mahsulotlar bu yerda JavaScript orqali ko‘rsatiladi -->
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="active">🏠</a>
+    <a href="category.html">📦</a>
+    <a href="favorites.html">❤️</a>
+    <a href="#">👤</a>
+  </nav>
 </body>
 </html>
