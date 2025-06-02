@@ -1,77 +1,53 @@
-Telegram.WebApp.ready();
-Telegram.WebApp.expand();
-
-const productsData = {
-  "oyinchoqlar": [
+document.addEventListener("DOMContentLoaded", () => {
+  const products = [
     {
+      id: "1",
       name: "Raqsga tushadigan kaktus",
-      image: "https://i.ibb.co/YkYw7dx/kaktus.jpg",
-      description: "Raqsga tushadigan, musiqa chaladigan va gapiradigan kaktus o'yinchog'i.",
-      price: "99 000 so'm",
-      link: "https://market.yandex.ru/product--raqsga-tushadigan-kaktus/123456"
-    }
-  ],
-  "texnika": [
+      price: "129,000 so'm",
+      image: "https://jys555.github.io/amazing-store/images/kaktus.jpg"
+    },
     {
-      name: "Mini Blender",
-      image: "https://i.ibb.co/sCRrDzF/mini-blender.jpg",
-      description: "Portativ blender. Kokteyl va pyure tayyorlash uchun qulay.",
-      price: "159 000 so'm",
-      link: "https://market.yandex.ru/product--mini-blender/654321"
+      id: "2",
+      name: "Yumshoq to‘p",
+      price: "59,000 so'm",
+      image: "https://jys555.github.io/amazing-store/images/ball.jpg"
+    },
+    {
+      id: "3",
+      name: "Pultli Jeep",
+      price: "199,000 so'm",
+      image: "https://jys555.github.io/amazing-store/images/jeep.jpg"
     }
-  ]
-};
+  ];
 
-function getCategoryFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  const startappParam = params.get("startapp");
-  if (startappParam && startappParam.startsWith("category=")) {
-    return startappParam.split("category=")[1];
-  }
-  return null;
-}
+  const container = document.getElementById("product-list");
 
-function renderProducts(category) {
-  const titleElement = document.getElementById("category-title");
-  const productsElement = document.getElementById("products");
-
-  const products = productsData[category];
-  if (!products) {
-    titleElement.textContent = "Kategoriya topilmadi";
-    return;
-  }
-
-  titleElement.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-
-  products.forEach(product => {
-    const productCard = document.createElement("div");
-    productCard.className = "product-card";
-
-    productCard.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" />
-      <div class="product-content">
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <strong>${product.price}</strong>
-        <div class="product-actions">
-          <a href="${product.link}" target="_blank" class="buy-button">🛒 Sotib olish</a>
-          <div class="reactions">
-            <span>❤️ 0</span>
-            <span>👎 0</span>
-          </div>
+  if (container) {
+    products.forEach(product => {
+      const liked = localStorage.getItem(`liked_${product.id}`) === "true";
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+          <button class="like-btn" data-id="${product.id}">
+            ${liked ? "❤️" : "🤍"}
+          </button>
         </div>
-      </div>
-    `;
+      `;
+      container.appendChild(card);
+    });
 
-    productsElement.appendChild(productCard);
-  });
-}
+    document.querySelectorAll(".like-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.id;
+        const liked = localStorage.getItem(`liked_${id}`) === "true";
+        localStorage.setItem(`liked_${id}`, !liked);
+        button.innerText = !liked ? "❤️" : "🤍";
+      });
+    });
+  }
+});
 
-// Tema (yorug‘ / qorong‘i) holatini aniqlash
-const theme = Telegram.WebApp.colorScheme;
-if (theme === "dark") {
-  document.body.classList.add("dark");
-}
-
-const category = getCategoryFromURL();
-renderProducts(category);
