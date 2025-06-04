@@ -101,5 +101,74 @@ function createProductCard(product) {
 
   return card;
 }
+// Like bosilgan mahsulotni localStorage'ga yozish
+function toggleFavorite(product) {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const exists = favorites.find(item => item.name === product.name);
+
+  if (exists) {
+    favorites = favorites.filter(item => item.name !== product.name);
+  } else {
+    favorites.push(product);
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+// Like tugmasiga hodisa biriktirish
+function createLikeButton(product) {
+  const likeBtn = document.createElement("button");
+  likeBtn.className = "like-btn";
+  likeBtn.innerHTML = "❤️";
+
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const isFavorited = favorites.some(item => item.name === product.name);
+
+  if (isFavorited) {
+    likeBtn.classList.add("liked");
+  }
+
+  likeBtn.addEventListener("click", () => {
+    toggleFavorite(product);
+    likeBtn.classList.toggle("liked");
+  });
+
+  return likeBtn;
+}
+
+// Sevimlilarni ko‘rsatish
+function renderFavorites() {
+  const favoritesList = document.getElementById("favorites-list");
+  if (!favoritesList) return;
+
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  favorites.forEach(product => {
+    const productCard = document.createElement("div");
+    productCard.className = "product-card";
+
+    productCard.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <div class="product-content">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <strong>${product.price}</strong>
+        <div class="product-actions">
+          <a href="${product.link}" target="_blank" class="buy-button">🛒 Sotib olish</a>
+        </div>
+      </div>
+    `;
+
+    const actionsDiv = productCard.querySelector(".product-actions");
+    actionsDiv.appendChild(createLikeButton(product));
+
+    favoritesList.appendChild(productCard);
+  });
+}
+
+// Sahifa turiga qarab sevimlilarni chizish
+if (window.location.pathname.includes("favorites.html")) {
+  renderFavorites();
+}
 
 
