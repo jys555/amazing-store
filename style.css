@@ -76,3 +76,13 @@ header {
 .bottom-nav a.active {
   color: #007aff;
 }
+.like-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.like-btn.liked {
+  color: red;
+}
