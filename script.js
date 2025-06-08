@@ -1,111 +1,83 @@
-// Mahsulotlar ro‘yxati
-function getAllProducts() {
-  return [
+document.addEventListener("DOMContentLoaded", () => {
+  const products = [
     {
-      id: 1,
+      id: "1",
       name: "Raqsga tushadigan kaktus",
-      price: "129 000 so‘m",
-      image: "images/kaktus.jpg",
-      category: "O‘yinchoqlar",
-      link: "https://ya.ru/kaktus"
+      price: "129,000 so'm",
+      image: "images/kaktus.jpg"
     },
     {
-      id: 2,
+      id: "2",
       name: "Yumshoq to‘p",
-      price: "79 000 so‘m",
-      image: "images/ball.jpg",
-      category: "O‘yinchoqlar",
-      link: "https://ya.ru/ball"
+      price: "59,000 so'm",
+      image: "images/ball.jpg"
     },
     {
-      id: 3,
-      name: "Pultli jeep",
-      price: "199 000 so‘m",
-      image: "images/jeep.jpg",
-      category: "O‘yinchoqlar",
-      link: "https://ya.ru/jeep"
+      id: "3",
+      name: "Pultli Jeep",
+      price: "199,000 so'm",
+      image: "images/jeep.jpg"
     }
   ];
-}
 
-// Sevimlilarni saqlovchi va olib beruvchi funksiyalar
-function toggleFavorite(product) {
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  const exists = favorites.find(item => item.id === product.id);
+  const container = document.getElementById("product-list");
 
-  if (exists) {
-    favorites = favorites.filter(item => item.id !== product.id);
-  } else {
-    favorites.push(product);
+  if (container) {
+    products.forEach(product => {
+      const liked = localStorage.getItem(`liked_${product.id}`) === "true";
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <button class="like-btn" data-id="${product.id}">
+          ${liked ? "❤️" : "🤍"}
+        </button>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    document.querySelectorAll(".like-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.id;
+        const liked = localStorage.getItem(`liked_${id}`) === "true";
+        localStorage.setItem(`liked_${id}`, !liked);
+        button.innerText = !liked ? "❤️" : "🤍";
+      });
+    });
   }
 
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-}
+  // Sevimlilar sahifasida mahsulotlarni ko‘rsatish
+  if (window.location.pathname.includes("favorites.html")) {
+    const favoritesList = document.getElementById("product-list");
+    const favorites = [];
 
-function isFavorited(productId) {
-  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  return favorites.some(item => item.id === productId);
-}
+    products.forEach(product => {
+      const liked = localStorage.getItem(`liked_${product.id}`) === "true";
+      if (liked) {
+        favorites.push(product);
+      }
+    });
 
-// Mahsulot kartasini yaratish
-function createProductCard(product) {
-  const card = document.createElement("div");
-  card.className = "product-card";
-
-  card.innerHTML = `
-    <img src="${product.image}" alt="${product.name}">
-    <div class="product-info">
-      <h3>${product.name}</h3>
-      <p>${product.price}</p>
-      <div class="actions">
-        <a href="${product.link}" target="_blank" class="buy-button">🛒 Sotib olish</a>
-      </div>
-    </div>
-  `;
-
-  const likeBtn = document.createElement("button");
-  likeBtn.className = "like-btn";
-  likeBtn.textContent = isFavorited(product.id) ? "❤️" : "🤍";
-
-  likeBtn.addEventListener("click", () => {
-    toggleFavorite(product);
-    likeBtn.textContent = isFavorited(product.id) ? "❤️" : "🤍";
-  });
-
-  card.querySelector(".actions").appendChild(likeBtn);
-  return card;
-}
-
-// Sahifaga mahsulotlarni chiqarish
-function renderProducts(products) {
-  const container = document.getElementById("product-list");
-  if (!container) return;
-  container.innerHTML = "";
-
-  products.forEach(product => {
-    const card = createProductCard(product);
-    container.appendChild(card);
-  });
-}
-
-// Sevimlilarni chiqarish
-function renderFavorites() {
-  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  renderProducts(favorites);
-}
-
-// Sahifa yuklanganda bajariladigan kod
-document.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname;
-  const allProducts = getAllProducts();
-
-  if (path.includes("index.html")) {
-    renderProducts(allProducts); // Bosh sahifa: barcha mahsulot
-  } else if (path.includes("category.html")) {
-    // Hozircha faqat "O‘yinchoqlar" ko‘rsatiladi
-    const toys = allProducts.filter(p => p.category === "O‘yinchoqlar");
-    renderProducts(toys);
-  } else if (path.includes("favorites.html")) {
-    renderFavorites();
+    favorites.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <button class="like-btn" data-id="${product.id}">
+          ❤️
+        </button>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+        </div>
+      `;
+      favoritesList.appendChild(card);
+    });
   }
 });
+
+
