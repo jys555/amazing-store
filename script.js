@@ -19,6 +19,27 @@ document.addEventListener("DOMContentLoaded", () => {
       image: "images/jeep.jpg"
     }
   ];
+function openProductModal(product) {
+  document.getElementById("modalImage").src = product.image;
+  document.getElementById("modalTitle").innerText = product.name;
+  document.getElementById("modalDescription").innerText = product.description;
+  document.querySelector(".price-current").innerText = product.currentPrice + " so‘m";
+  document.querySelector(".price-old").innerText = product.oldPrice + " so‘m";
+  document.querySelector(".discount-percent").innerText = "-" + product.discount + "%";
+  document.getElementById("productModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("productModal").style.display = "none";
+}
+
+// Modalni yopish uchun tashqi joyga bosganda yopish (optional)
+window.onclick = function(event) {
+  let modal = document.getElementById("productModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
 
   const container = document.getElementById("product-list");
 
