@@ -79,5 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// Faqat like bosilgan mahsulotlarni chiqarish
+function renderFavorites() {
+  const favoriteItems = products.filter(product => product.liked === true);
+  renderProducts(favoriteItems, "favorites-container");
+}
+
 
 
