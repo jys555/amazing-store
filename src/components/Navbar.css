@@ -1,0 +1,26 @@
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 99;
+  height: 56px;
+}
+.navbar button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.8rem;
+  padding: 0.5rem 1.2rem;
+  color: #aaa;
+  transition: color 0.2s;
+}
+.navbar button.active,
+.navbar button:active {
+  color: #f60;
+}
