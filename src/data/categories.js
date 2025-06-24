@@ -1,8 +1,4 @@
-const categories = [
-  { id: 1, name: { uz: "Quloqchinlar", ru: "Наушники" }, icon: "🎧" },
-  { id: 2, name: { uz: "Kolonkalar", ru: "Колонки" }, icon: "🔊" },
-  { id: 3, name: { uz: "O'yinchoqlar", ru: "Игрушки" }, icon: "🚗" },
-  { id: 4, name: { uz: "Sport", ru: "Спорт" }, icon: "🏋️" }
+export const categories = [
+  { id: 1, name_uz: "Quloqchinlar", name_ru: "Наушники", icon: "/icons/headphones.svg" },
+  { id: 2, name_uz: "Kalonkalar", name_ru: "Колонки", icon: "/icons/speaker.svg" }
 ];
-
-export default categories;
