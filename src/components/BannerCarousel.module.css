@@ -1,0 +1,47 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.banner {
+  width: 100%;
+  opacity: 0;
+  transition: opacity .6s;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #0002;
+  z-index: 1;
+  height: auto;
+  max-height: 160px;
+  object-fit: cover;
+}
+.active {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+.dot,
+.dotActive {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #fff7;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.dotActive {
+  background: #fff;
+  border: 1.5px solid #ff5d38;
+}
