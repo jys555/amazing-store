@@ -1,60 +1,34 @@
-const products = [
+export const products = [
   {
     id: 1,
-    title: { uz: "Bluetooth quloqchin", ru: "Bluetooth наушники" },
-    desc: {
-      uz: "Mikrofoni bilan simsiz bluetooth quloqchin. Uzoq vaqt ishlaydi.",
-      ru: "Беспроводные наушники с микрофоном. Долгая работа."
-    },
-    price: 99000,
-    oldPrice: 129000,
-    imgs: ["/assets/demo1.jpg", "/assets/demo1b.jpg"],
-    category: 1,
-    uzumLink: "https://uzum.uz/product/1",
-    yandexLink: "https://market.yandex.ru/product/1"
+    name_uz: "Simsiz Bluetooth quloqchinlar P9",
+    name_ru: "Беспроводные наушники Bluetooth P9",
+    price: 47990,
+    old_price: 79900,
+    discount: 40,
+    image: "/images/p9_headphones.jpg",
+    images: [
+      "/images/p9_headphones.jpg",
+      "/images/p9_headphones_2.jpg"
+    ],
+    category: "Quloqchinlar",
+    description_uz: "Sifatli va zamonaviy simsiz quloqchin.",
+    description_ru: "Качественные и современные беспроводные наушники."
   },
   {
     id: 2,
-    title: { uz: "Mini kolonkalar", ru: "Мини колонки" },
-    desc: {
-      uz: "Kichik va kuchli bluetooth kolonkalar, har qanday joyda ishlatish uchun.",
-      ru: "Маленькие мощные bluetooth колонки для любого случая."
-    },
+    name_uz: "Kalonka JBL Black Qulay",
+    name_ru: "Колонка JBL Black Qulay",
     price: 65550,
-    oldPrice: 85000,
-    imgs: ["/assets/demo2.jpg"],
-    category: 2,
-    uzumLink: "https://uzum.uz/product/2",
-    yandexLink: "https://market.yandex.ru/product/2"
-  },
-  {
-    id: 3,
-    title: { uz: "O'yinchoq mashina", ru: "Игрушечная машина" },
-    desc: {
-      uz: "Masofadan boshqariladigan zaryadlanadigan o'yinchoq mashina.",
-      ru: "Радиоуправляемая игрушечная машина с зарядкой."
-    },
-    price: 47992,
-    oldPrice: 99000,
-    imgs: ["/assets/demo3.jpg"],
-    category: 3,
-    uzumLink: "https://uzum.uz/product/3",
-    yandexLink: "https://market.yandex.ru/product/3"
-  },
-  {
-    id: 4,
-    title: { uz: "Sport shaker", ru: "Спорт шейкер" },
-    desc: {
-      uz: "Proteinli ichimliklar uchun spiral shakli bilan sport shaker.",
-      ru: "Шейкер для спортивного питания со спиралью."
-    },
-    price: 36000,
-    oldPrice: 60000,
-    imgs: ["/assets/demo4.jpg"],
-    category: 4,
-    uzumLink: "https://uzum.uz/product/4",
-    yandexLink: "https://market.yandex.ru/product/4"
+    old_price: 89900,
+    discount: 27,
+    image: "/images/jbl_black.jpg",
+    images: [
+      "/images/jbl_black.jpg",
+      "/images/jbl_black_2.jpg"
+    ],
+    category: "Kalonkalar",
+    description_uz: "JBL brendidan portativ kalonka.",
+    description_ru: "Портативная колонка от JBL."
   }
 ];
-
-export default products;
