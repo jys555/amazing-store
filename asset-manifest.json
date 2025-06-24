@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/amazing-store/static/css/main.fba3199c.css",
+    "main.js": "/amazing-store/static/js/main.636f963c.js",
+    "static/media/uz.svg": "/amazing-store/static/media/uz.0e98eddbb95aeba501dbc0b6af6d43cb.svg",
+    "index.html": "/amazing-store/index.html",
+    "static/media/ru.svg": "/amazing-store/static/media/ru.8d2f6d5cef80c37cfc56bd61b758b388.svg",
+    "main.fba3199c.css.map": "/amazing-store/static/css/main.fba3199c.css.map",
+    "main.636f963c.js.map": "/amazing-store/static/js/main.636f963c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fba3199c.css",
+    "static/js/main.636f963c.js"
+  ]
+}
